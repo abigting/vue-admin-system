@@ -1,0 +1,24 @@
+//sidebar
+$menuText:rgb(191, 203, 217);
+$menuActiveText:rgb(64, 158, 255);
+$subMenuActiveText:#f4f4f5; //https://github.com/ElemeFE/element/issues/12951
+
+$menuBg:rgb(48, 65, 86);
+
+$menuHover:#263445;
+
+$subMenuBg:#1f2d3d;
+$subMenuHover:#263445;
+
+$sideBarWidth: 210px;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}
