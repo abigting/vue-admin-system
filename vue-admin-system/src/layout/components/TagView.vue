@@ -204,20 +204,20 @@
       display: inline-block;
       position: relative;
       cursor: pointer;
-      height: 40px;
-      line-height: 40px;
+      height: 32px;
+      line-height: 32px;
       /*border: 1px solid #d8dce5;*/
       padding: 0 8px;
       font-size: 12px;
       margin-left: 5px;
-      margin-top: 10px;
+      margin-top: 8px;
       color: #666666;
       background: #E3E7ED;;
       &:first-of-type {
-        margin-left: 10px;
+        margin-left: 8px;
       }
       &:last-of-type {
-        margin-right: 10px;
+        margin-right: 8px;
       }
       &.active {
         background-color: #fff;

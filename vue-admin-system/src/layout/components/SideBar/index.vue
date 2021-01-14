@@ -5,10 +5,6 @@
              :background-color="variables.menuBg"
              :text-color="variables.menuText"
              :active-text-color="variables.menuActiveText" :collapse-transition="false" mode="vertical">
-      <div class="menu-logo">
-        后台管理系统
-<!--        <img src="@/assets/imgs/logo-text.png" alt="">-->
-      </div>
       <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
     </el-menu>
   </el-scrollbar>
@@ -52,7 +48,6 @@
         return variables
       },
       isCollapse() {
-        console.log(this.sidebar.opened, 'Fiona')
         return !this.sidebar.opened
       },
     },

@@ -62,6 +62,8 @@
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
+      height: 50px;
+      line-height: 50px;
       &:hover {
         background-color: $menuHover !important;
       }
@@ -170,6 +172,8 @@
 
   .nest-menu .el-submenu > .el-submenu__title,
   .el-menu-item {
+    height: 50px;
+    line-height: 50px;
     &:hover {
       // you can use $subMenuHover
       background-color: $menuHover !important;

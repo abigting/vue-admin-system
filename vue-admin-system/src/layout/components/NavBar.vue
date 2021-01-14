@@ -2,74 +2,6 @@
   <div class="navbar-pages">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb/>
-    <div class="admin-block">
-      <el-dropdown class="avatar-container" @command="handleClick">
-        <div class="avatar-wrapper">
-          <el-avatar :size="30" style="vertical-align: middle">
-            {{userInfo.name?userInfo.name[0]:'无'}}
-          </el-avatar>
-          <span class="admin-name">
-            {{userInfo.name?userInfo.name:'无名氏'}}
-          </span>
-          <i class="el-icon-caret-bottom el-icon-arrow-down"/>
-        </div>
-        <el-dropdown-menu slot="dropdown" class="avatar-menu-wrap">
-          <el-dropdown-item command="4"><span class="fixed-menu-item"><i
-                  class="iconfont iconshouye blue-text"></i>返回首页</span></el-dropdown-item>
-          <el-dropdown-item command="1"><span class="fixed-menu-item"><i
-                  class="iconfont iconbianji blue-text"></i>账号信息</span></el-dropdown-item>
-          <el-dropdown-item command="2"><span class="fixed-menu-item"><i
-                  class="iconfont iconmima blue-text"></i>修改密码</span></el-dropdown-item>
-          <el-dropdown-item command="3"><span class="fixed-menu-item"><i
-                  class="iconfont icontuichu blue-text"></i>退出登录</span></el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
-    <el-dialog title="个人信息" :visible.sync="dialogVisible" width="700px" :close-on-click-modal="isFirstLogin!=='1'"
-               :show-close="isFirstLogin==='0'" @close="dialogClose">
-      <div v-loading="loading" element-loading-spinner="el-icon-loading"
-           element-loading-background="rgba(255, 255, 255, 0.4)">
-        <el-form :model="userInfo" :rules="rules" ref="userInfo" label-width="100px" class="demo-userInfo">
-          <div>
-            <div class="title-block">基本信息</div>
-            <el-form-item label="用户名：" prop="accountName">
-              <el-input v-model="userInfo.accountName" maxlength="8"></el-input>
-            </el-form-item>
-            <el-form-item label="姓名：" prop="userName">
-              <el-input v-model="userInfo.userName" maxlength="4"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号：" prop="phone">
-              <el-input v-model="userInfo.phone" maxlength="11"></el-input>
-            </el-form-item>
-            <el-form-item label="身份证号：" prop="userCardNo">
-              <el-input v-model="userInfo.userCardNo" maxlength="18"></el-input>
-            </el-form-item>
-          </div>
-          <div>
-            <div class="title-block">密码信息</div>
-            <el-form-item label="当前密码：" prop="oldpassword" v-if="isFirstLogin==='0'">
-              <el-input v-model="userInfo.oldpassword" type="text"></el-input>
-            </el-form-item>
-            <el-form-item label="新密码：" prop="password">
-              <el-input v-model="userInfo.password" minlength="6" type="text"></el-input>
-            </el-form-item>
-            <el-form-item label="确认新密码：" prop="repassword">
-              <el-input v-model="userInfo.repassword" minlength="6" type="text"></el-input>
-            </el-form-item>
-          </div>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogVisible = false" v-if="isFirstLogin==='0'">取 消</el-button>
-          <el-button type="primary" @click="submitForm('userInfo')">保 存</el-button>
-        </div>
-      </div>
-    </el-dialog>
-    <div class="loginout-cover" v-if="loginOut" v-loading="true" element-loading-text="退出中"
-         element-loading-spinner="el-icon-loading"
-         element-loading-background="rgba(0, 0, 0, 0.2)">
-    </div>
-<!--    <ModifyPassword :modifyPasswordDialog="modifyPasswordDialog" @handCancel="modifyPasswordDialog=false"/>-->
-<!--    <AccountInfo :accountInfoVisible="accountInfoVisible" @handCancel="accountInfoVisible=false"/>-->
   </div>
 </template>
 
@@ -77,8 +9,6 @@
   import {
     mapGetters
   } from 'vuex'
-  // import ModifyPassword from '../../index/components/modifyPassword'
-  // import AccountInfo from '../../index/components/accountInfo'
   import Breadcrumb from '@/components/Breadcrumb'
   import Hamburger from '@/components/Hamburger'
   import {getUserInfo} from '@/utils/auth'
@@ -88,51 +18,9 @@
     components: {
       Breadcrumb,
       Hamburger,
-      // ModifyPassword,
-      // AccountInfo
     },
     data() {
-      var checkPhone = (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error('请输入手机号码'));
-        } else if (!(/^1[34578]\d{9}$/.test(Number(value)))) {
-          callback(new Error('手机号码不规范'));
-        } else {
-          callback();
-        }
-      };
-      var checkId = (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error('请输入身份证号码'));
-        } else if (value.length != 18) {
-          callback(new Error('身份证号码应为18位'));
-        } else {
-          callback();
-        }
-      };
-      var checkPass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入新密码'));
-        } else if (value.length < 6) {
-          callback(new Error('请至少输入6位密码'));
-        } else {
-          if (this.userInfo.repassword !== '') {
-            this.$refs.userInfo.validateField('repassword');
-          }
-          callback();
-        }
-      };
-      var checkRepass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入新密码'));
-        } else if (value.length < 6) {
-          callback(new Error('请至少输入6位密码'));
-        } else if (value !== this.userInfo.password) {
-          callback(new Error('两次密码不一致!'));
-        } else {
-          callback();
-        }
-      };
+
       return {
         circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
         loading: false,
@@ -140,39 +28,6 @@
         dialogVisible: false,
         isFirstLogin: "0", //是否首次登陆(未更改过密码)  1是 0否
         userInfo: getUserInfo(),
-        rules: {
-          accountName: [{
-            required: true,
-            message: "请输入用户名",
-            trigger: "blur"
-          }],
-          userName: [{
-            required: true,
-            message: "请输入姓名",
-            trigger: "blur"
-          }],
-          phone: [{
-            validator: checkPhone,
-            trigger: "blur"
-          }],
-          userCardNo: [{
-            validator: checkId,
-            trigger: "blur"
-          }],
-          oldpassword: [{
-            required: true,
-            message: "请输入当前密码",
-            trigger: "blur"
-          }],
-          password: [{
-            trigger: "blur",
-            validator: checkPass
-          }],
-          repassword: [{
-            trigger: "blur",
-            validator: checkRepass
-          }]
-        },
         accountInfoVisible: false,
         modifyPasswordDialog: false
       };
@@ -190,50 +45,6 @@
     methods: {
       toggleSideBar() {
         this.$store.dispatch('app/ToggleSideBar')
-      },
-      dialogClose() {
-        this.$refs["userInfo"].resetFields();
-      },
-      submitForm(formName) {
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            this.loading = true;
-            let obj = {
-              accountName: this.userInfo.accountName,
-              flag: this.userInfo.flag,
-              oldpassword: md5(this.userInfo.oldpassword),
-              password: md5(this.userInfo.password),
-              repassword: md5(this.userInfo.repassword),
-              phone: this.userInfo.phone,
-              userCardNo: this.userInfo.userCardNo,
-              userName: this.userInfo.userName
-            }
-            const typeText = this.isFirstLogin === "0" ? "修改成功" : "保存成功";
-            updateUser(obj).then(res => {
-              this.loading = false;
-              if (res.success) {
-                this.$message({
-                  message: typeText,
-                  type: "success"
-                });
-                this.isFirstLogin = "0";
-                this.userInfo.flag === "1" ? "0" : "1";
-                this.userInfo.password = "";
-                this.userInfo.repassword = "";
-                this.userInfo.oldpassword = "";
-                this.dialogVisible = false;
-              }
-            }).catch(err => {
-              this.loading = false;
-            })
-          } else {
-            console.log("error submit!!");
-            return false;
-          }
-        });
-      },
-      goHome() {
-        this.$router.push("/");
       },
       handleClick(type) {
         switch (type) {
@@ -301,7 +112,7 @@
 
 <style lang="scss">
   .navbar-pages {
-    height: 54px;
+    height: 40px;
     /*line-height: 54px;*/
     background: #fff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
@@ -327,8 +138,8 @@
     }
 
     .hamburger-container {
-      line-height: 60px;
-      height: 54px;
+      line-height: 40px;
+      height: 40px;
       float: left;
       padding-left: 10px;
     }
@@ -390,7 +201,7 @@
       position: absolute;
       right: 20px;
       top: 0;
-      line-height: 54px;
+      line-height: 40px;
 
       .avatar-wrapper {
         cursor: pointer;

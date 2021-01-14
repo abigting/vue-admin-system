@@ -26,6 +26,6 @@ export default {
   height: calc(100vh - 104px);
   position: relative;
   overflow-x: hidden;
-  margin: 0 10px 10px 10px;
+  margin: 0 8px 8px 8px;
 }
 </style>
