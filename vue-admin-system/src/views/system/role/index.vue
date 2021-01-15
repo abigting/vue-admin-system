@@ -3,7 +3,7 @@
         <!-- 共二级嵌套 -->
         <router-view v-if="$route.meta.level===2"></router-view>
         <div v-else-if="$route.meta.level===1">
-            <div class="search-bar pb16">
+            <div class="search-bar">
                 <el-form label-width="100px">
                     <el-row :gutter="10">
                         <el-col :xs="12" :sm="8" :md="8" :lg="6" :xl="6">
@@ -45,22 +45,21 @@
                             <span v-else>否</span>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="roleDescribe" label="说明" min-width="100"   show-overflow-tooltip align="center"></el-table-column>
-<!--                    <el-table-column prop="operation" label="操作" width="160" align="center" fixed="right">-->
-<!--                        <template slot-scope="scope">-->
-<!--                            <span class="action" v-permission="'38010100020'" @click="showDetail(ACTION.REVIEW, scope.row)">查看</span>-->
-<!--                            <span class="action" v-permission="'38010100030'" @click="showDetail(ACTION.EDIT, scope.row)">修改</span>-->
-<!--                            <span class="delete" v-permission="'38010100040'" slot="reference" @click="deleteItem(scope.row)">删除</span>-->
-<!--                        </template>-->
-<!--                    </el-table-column>-->
+                    <el-table-column prop="roleDescribe" label="说明" min-width="100" show-overflow-tooltip
+                                     align="center"></el-table-column>
+                    <el-table-column prop="operation" label="操作" width="160" align="center" fixed="right">
+                        <template slot-scope="scope">
+                            <span class="action" @click="showDetail(ACTION.REVIEW, scope.row)">查看</span>
+                            <span class="action" @click="showDetail(ACTION.EDIT, scope.row)">修改</span>
+                            <span class="delete" slot="reference" @click="deleteItem(scope.row)">删除</span>
+                        </template>
+                    </el-table-column>
                 </el-table>
-            </div>
-            <!--分页组件-->
-            <div style="margin-top: 15px;
-        text-align: right;">
-                <el-pagination :total="total" background :current-page="queryForm.page" style="margin-top: 0;"
-                               layout="total,  sizes, prev, pager,next,jumper"
-                               @size-change="sizeChange" @current-change="pageChange" :page-size="queryForm.size"/>
+                <div class="pagination-box">
+                    <el-pagination :total="total" background :current-page="queryForm.page"
+                                   layout="total,  sizes, prev, pager,next,jumper"
+                                   @size-change="sizeChange" @current-change="pageChange" :page-size="queryForm.size"/>
+                </div>
             </div>
         </div>
     </div>

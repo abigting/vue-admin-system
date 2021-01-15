@@ -1,0 +1,41 @@
+.el-button {
+  padding: 7px 20px;
+  border-radius: 2px;
+}
+
+.el-button--primary {
+  background-color: #1D6FE9;
+}
+
+.search-bar {
+  .el-form-item {
+    margin-bottom: 8px;
+  }
+}
+
+.el-table{
+  color: #1F2022;
+}
+
+.el-table td, .el-table th {
+  padding: 8px 0;
+}
+
+.el-table thead th{
+  background: #F1F3F7 !important;
+  font-weight: 600 !important;
+  color: #1F2022 !important;
+}
+
+.el-input__inner {
+  height: 30px;
+  line-height: 30px;
+}
+
+.el-form-item__label {
+  line-height: 30px;
+}
+
+.el-form-item__content {
+  line-height: 30px;
+}

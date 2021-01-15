@@ -1,7 +1,6 @@
 <template>
-    <div class="detail-wrapper">
-        <p class="t_left_line">详情页标题</p>
-        user
+    <div>
+        首页
     </div>
 </template>
 

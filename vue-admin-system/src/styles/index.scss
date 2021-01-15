@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import './transition.scss';
 @import './sidebar.scss';
+//@import './theme.scss';
 
 html,
 body,
@@ -110,10 +111,16 @@ body {
   }
 }
 
+@each $i in left, right, center {
+  .ta#{$i} {
+    text-align: #{$i};
+  }
+}
+
 //搜索条
 .search-bar {
   background: #ffffff;
-  padding: 16px 14px;
+  padding: 16px 14px 8px 16px;
   margin-bottom: 8px;
 }
 
@@ -126,6 +133,16 @@ body {
   .el-button {
     font-size: 14px;
   }
+}
+
+.detail-wrapper{
+  background: #ffffff;
+  padding: 16px 16px;
+}
+
+.pagination-box{
+  text-align: right;
+  margin-top: 16px;
 }
 
 .small-title {
@@ -185,3 +202,24 @@ body {
   cursor: pointer;
 }
 
+//标题左边框
+.t_left_line {
+  position: relative;
+  padding: 0 12px;
+  color: rgba(31, 32, 34, 1);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.t_left_line::after {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 14px;
+  background: linear-gradient(180deg, #358FFF 0%, #105AD2 100%);
+  border-radius: 1px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

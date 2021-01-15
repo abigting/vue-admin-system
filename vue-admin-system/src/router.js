@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import Layout from './layout/Layout'
 
 Vue.use(Router)
@@ -10,7 +9,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home,
+            component: () => import(/* webpackChunkName: "about" */ './views/index'),
             hidden: true
         },
         {
@@ -32,7 +31,16 @@ export default new Router({
                     path: 'role',
                     component: () => import(/* webpackChunkName: "about" */ './views/system/role'),
                     name: 'role',
-                    meta: {title: '用户中心', level: 1, noCache: true}
+                    meta: {title: '用户中心', level: 1, noCache: true},
+                    children: [
+                        {
+                            path: 'detail',
+                            component: () => import(/* webpackChunkName: "about" */ './views/system/role/detail'),
+                            name: 'detail',
+                            meta: {title: '用户详情', level: 2},
+                            hidden: true
+                        }
+                    ]
                 },
                 {
                     path: 'user',

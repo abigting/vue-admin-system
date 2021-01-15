@@ -73,7 +73,7 @@
                     <el-button
                             :loading="loading"
                             type="primary"
-                            style="width:100%;"
+                            class="submit-btn"
                             @click.native.prevent="handleLogin">
                         登 录
                     </el-button>
@@ -261,7 +261,12 @@
     .login-wrapper {
         height: 100vh;
         width: 100%;
-        background: linear-gradient(180deg, #1789FA 0%, #1454D5 100%);
+        background: linear-gradient(270deg, #6592EE 0%, #405DB5 100%);
+    }
+
+    .submit-btn {
+        width: 100%;
+        height: 48px;
     }
 
     .type-toggle {
@@ -290,13 +295,18 @@
         transform: translate(-50%, -50%);
     }
 
+    .login-form /deep/ .el-input__inner {
+        height: 40px;
+        line-height: 40px;
+    }
+
     .password-login {
         display: inline-block;
         width: 120px;
         cursor: pointer;
     }
 
-    .phone-login{
+    .phone-login {
         display: inline-block;
         width: 120px;
         cursor: pointer;
@@ -322,6 +332,7 @@
         right: 0;
         top: 0;
         cursor: pointer;
+        height: 40px;
     }
 
     .footer {

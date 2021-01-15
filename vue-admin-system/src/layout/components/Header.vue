@@ -118,7 +118,7 @@
     .header {
         height: 54px;
         line-height: 54px;
-        background: #2E63B7;
+        background: linear-gradient(270deg, #6592EE 0%, #405DB5 100%);
         box-shadow: 0 2px 4px 0 #B1C3E5;
         color: #ffffff;
         padding: 0 20px;
